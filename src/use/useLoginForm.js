@@ -1,15 +1,15 @@
-import {useField, useForm} from 'vee-validate'
+import { computed, watch } from 'vue'
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
+import { useField, useForm } from 'vee-validate'
 import * as yup from 'yup'
-import {computed, watch} from 'vue'
-import {useStore} from 'vuex'
-import {useRouter} from 'vue-router'
 
 export function useLoginForm() {
   const store = useStore()
   const router = useRouter()
-  const {handleSubmit, isSubmitting, submitCount} = useForm()
+  const { handleSubmit, isSubmitting, submitCount } = useForm()
 
-  const {value: email, errorMessage: eError, handleBlur: eBlur} = useField(
+  const { value: email, errorMessage: eError, handleBlur: eBlur } = useField(
     'email',
     yup
       .string()
@@ -20,7 +20,7 @@ export function useLoginForm() {
 
   const MIN_LENGTH = 6
 
-  const {value: password, errorMessage: pError, handleBlur: pBlur} = useField(
+  const { value: password, errorMessage: pError, handleBlur: pBlur } = useField(
     'password',
     yup
       .string()
